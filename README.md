@@ -1,41 +1,97 @@
-# Claude Code
+# Claude (Code) Course Assistant Template
 
-![](https://img.shields.io/badge/Node.js-18%2B-brightgreen?style=flat-square) [![npm]](https://www.npmjs.com/package/@anthropic-ai/claude-code)
+A GitHub template repository for instructors to create AI-powered course development assistants using Claude.
 
-[npm]: https://img.shields.io/npm/v/@anthropic-ai/claude-code.svg?style=flat-square
+## Overview
 
-Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows -- all through natural language commands. Use it in your terminal, IDE, or tag @claude on Github.
+This template provides a structured framework for instructors to leverage Claude as a course development assistant. By customizing the included `CLAUDE.md` file with your course-specific information, you can create a consistent, intelligent assistant that helps develop course materials, assignments, and assessments aligned with your pedagogical goals.
 
-**Learn more in the [official documentation](https://docs.anthropic.com/en/docs/claude-code/overview)**.
+## Features
 
-<img src="./demo.gif" />
+- **Structured Course Development**: Pre-configured guidelines for creating lesson materials, assignments, and assessments
+- **Consistency Enforcement**: Claude will maintain consistency across all course materials
+- **Pedagogical Best Practices**: Built-in emphasis on scaffolding, clarity, and appropriate academic rigor
+- **Flexible Framework**: Adaptable to any course, programming language, or academic level
+- **Quality Assurance**: Integrated checklists and standards for course material development
 
-## Get started
+## Getting Started
 
-1. Install Claude Code:
+### 1. Use This Template
 
-```sh
-npm install -g @anthropic-ai/claude-code
+Click the "Use this template" button on GitHub to create a new repository based on this template.
+
+### 2. Customize CLAUDE.md
+
+Edit the `CLAUDE.md` file to include your course-specific information:
+
+1. Replace all bracketed placeholders (e.g., `[COURSE CODE]`, `[INSTRUCTOR NAME]`) with your actual information
+2. Update the repository structure section to match your intended organization
+3. Modify learning objectives to align with your course goals
+4. Specify your preferred programming languages and tools
+5. Adjust the semester schedule and topic sequencing
+6. Add any course-specific guidelines or requirements
+
+### 3. Set Up Your Development Environment
+
+Open this repository as a devContainer:
+
+1. Ensure you have Docker installed on your system
+2. Open the repository in VS Code
+3. When prompted, select "Reopen in Container" (or use the Command Palette: "Dev Containers: Reopen in Container")
+4. The devContainer will automatically set up the development environment with all necessary tools
+5. Claude will automatically recognize and use the `CLAUDE.md` file as context for all interactions
+
+### 4. Develop Your Course Materials
+
+With Claude configured, you can now:
+
+- **Create Lesson Materials**: "Help me create a lesson on [TOPIC] following our course structure"
+- **Design Assignments**: "Create a programming assignment for [CONCEPT] with starter code and test cases"
+- **Generate Practice Problems**: "Generate 8 practice problems with solutions for [TOPIC]"
+- **Build Assessments**: "Create exam questions testing understanding of [LEARNING OBJECTIVE]"
+- **Review and Refine**: "Review this material and suggest improvements for clarity and consistency"
+
+## Repository Structure
+
+After customization, your repository might look like:
+
+```
+your-course-repo/
+├── .devcontainer/          # Development container configuration
+├── CLAUDE.md               # Course-specific instructions for Claude
+├── README.md               # Course overview and syllabus
+├── lessons/                # Lesson materials
+│   ├── week01/
+│   ├── week02/
+│   └── ...
+├── assignments/            # Programming and written assignments
+│   ├── pa01/
+│   ├── pa02/
+│   └── ...
+├── exams/                  # Exam materials and reviews
+└── resources/              # Additional resources
 ```
 
-2. Navigate to your project directory and run `claude`.
+## Best Practices
 
-## Reporting Bugs
+1. **Keep CLAUDE.md Updated**: As your course evolves, update the instructions to reflect changes
+2. **Version Control**: Commit changes regularly to track course development progress
+3. **Consistent Formatting**: Use the Q#/A format for practice problems as specified in CLAUDE.md
+4. **Iterative Development**: Start with core materials and progressively add detail
+5. **Student Testing**: Have Claude generate materials at different difficulty levels
 
-We welcome your feedback. Use the `/bug` command to report issues directly within Claude Code, or file a [GitHub issue](https://github.com/anthropics/claude-code/issues).
+## Example Prompts
 
-## Data collection, usage, and retention
+Here are some effective prompts to use with your configured assistant:
 
-When you use Claude Code, we collect feedback, which includes usage data (such as code acceptance or rejections), associated conversation data, and user feedback submitted via the `/bug` command.
+- "Create a lesson on binary search trees with 6 practice problems of increasing difficulty"
+- "Generate starter code in Python for an assignment on graph traversal algorithms"
+- "Review this exam question and suggest improvements for clarity"
+- "Create a grading rubric for the dynamic programming assignment"
+- "Generate test cases for the sorting algorithm implementation"
 
-### How we use your data
+## Troubleshooting
 
-We may use feedback to improve our products and services, but we will not train generative models using your feedback from Claude Code. Given their potentially sensitive nature, we store user feedback transcripts for only 30 days.
-
-If you choose to send us feedback about Claude Code, such as transcripts of your usage, Anthropic may use that feedback to debug related issues and improve Claude Code's functionality (e.g., to reduce the risk of similar bugs occurring in the future).
-
-### Privacy safeguards
-
-We have implemented several safeguards to protect your data, including limited retention periods for sensitive information, restricted access to user session data, and clear policies against using feedback for model training.
-
-For full details, please review our [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) and [Privacy Policy](https://www.anthropic.com/legal/privacy).
+- **Claude doesn't follow course guidelines**: Ensure CLAUDE.md is properly formatted and saved
+- **Inconsistent responses**: Reference CLAUDE.md explicitly in your prompts
+- **DevContainer issues**: Check Docker is running and VS Code extensions are up to date
