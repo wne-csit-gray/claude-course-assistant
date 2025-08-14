@@ -9,7 +9,6 @@ This repository contains course materials currently in development. Your role as
 3. Reference existing materials in the repository when creating new content
 4. Consider the course schedule and pacing when developing materials
 5. Maintain academic rigor appropriate for the course level
-6. Treat ./Claude.md as the source of truth for standardization across files
 
 ## Course Overview
 
@@ -51,103 +50,66 @@ This repository contains course materials currently in development. Your role as
 3. [Learning objective 3]
 4. [Add more as needed]
 
-## Content Structure Guidelines
+### DevContainer Command Execution
 
-### Lesson Materials
+This repository uses devContainers for consistent development environments. This project's devcontainer is configured with Docker-out-of-Docker to control other containers running on the host.
 
-Each topic should include:
+**Outside Container Control:**
 
-- Conceptual introduction with motivation
-- Key definitions and foundations
-- Step-by-step examples
-- Practice problems with solutions
-- Implementation considerations (if applicable)
+**Finding Active Containers:**
 
-### Practice Problems
+```bash
+# List all running containers to identify project containers
+docker ps
+```
 
-- Mark questions as '**Q#:**' where # is the question number
-- Mark answers as '**A:**' immediately following each question
-- Include approximately 4-12 practice problems per lesson
-- Increasing difficulty levels to support different learning stages
+**Project-Specific DevContainer Configuration Discovery:**
 
-### Assignment Design
+Different submodules may have different devContainer setups. Always check each project's configuration before executing commands:
 
-- **Programming Assignments**: Focus on practical implementation
-- **Written Assignments**: Reinforce theoretical understanding
-- **Projects**: Apply concepts to larger, integrated problems
+**Checking User and Environment Setup:**
 
-## Technical Specifications
+```bash
+# Check what user the container is configured for
+docker exec CONTAINER_ID whoami
 
-### Programming Languages
+# Check available users in the container
+docker exec CONTAINER_ID cat /etc/passwd | grep -E "(vscode|node|root)"
 
-<!-- Specify the languages used in your course -->
+# Look for virtual environment paths
+docker exec CONTAINER_ID find /home -name "activate" 2>/dev/null
+docker exec CONTAINER_ID find /opt -name "activate" 2>/dev/null
 
-- Primary language: [LANGUAGE]
-- Secondary language(s): [LANGUAGE(S) if applicable]
-- Development environment: [IDE/TOOLS]
+# Check working directory setup
+docker exec CONTAINER_ID pwd
+docker exec CONTAINER_ID ls -la /workspace 2>/dev/null || docker exec CONTAINER_ID ls -la /workspaces 2>/dev/null
+```
 
-### Code Standards
+**Inspecting DevContainer Configuration:**
 
-- Include clear documentation and comments
-- Provide example usage for all functions
-- Follow standard style guidelines for each language
-- Include complexity analysis where relevant
-- Ensure all code is tested and functional
+```bash
+cat .devcontainer/Dockerfile
+cat .devcontainer/devcontainer.json
+```
 
-## Assessment Philosophy
+**Container Management Best Practices:**
 
-<!-- Describe your approach to assessment -->
+1. **Identify Active Containers**: Always run `docker ps` first to see what's currently running
+2. **Project-Specific Commands**: Use appropriate commands for each project type
+3. **Environment Activation**: Activate virtual environments when required
+4. **Working Directory**: Ensure you're in the correct working directory (`/workspace`)
 
-- Align assessments with learning objectives
-- Include varied question types and difficulty levels
-- Provide detailed solutions and explanations
-- Focus on understanding over memorization
+**Troubleshooting Multiple Containers:**
 
-## Course Calendar
+- **Container Not Found**: Container may have been stopped/restarted, check `docker ps` again
+- **Permission Issues**: Ensure correct user with `-u USERNAME` (check with `whoami`)
+- **Command Not Found**: May need to activate virtual environment or install dependencies
+- **Wrong Directory**: Make sure to `cd` to correct working directory (`/workspace` or `/workspaces`)
+- **User Mismatch**: Check devContainer Dockerfile for correct `USER` directive
+- **Different Base Image**: Submodules may use different base images with different tool installations
 
-### Semester Structure
+**Important Notes:**
 
-<!-- Customize for your semester length and schedule -->
-
-- Total weeks: [NUMBER]
-- Class sessions: [NUMBER]
-- Exams: [NUMBER AND TIMING]
-- Assignment schedule: [FREQUENCY AND DUE DATES]
-
-### Topic Sequencing
-
-<!-- Outline the progression of topics through the semester -->
-
-1. **Weeks 1-X**: [Topic group 1]
-2. **Weeks X-Y**: [Topic group 2]
-3. **Weeks Y-Z**: [Topic group 3]
-
-## Resources
-
-### Required Textbook(s)
-
-- [TEXTBOOK TITLE, AUTHORS, EDITION]
-
-### Supplementary Materials
-
-- [Additional resources, online materials, etc.]
-
-## Quality Assurance Checklist
-
-Before finalizing any course material:
-
-- [ ] Content is accurate and up-to-date
-- [ ] Examples are clear and build in complexity
-- [ ] Code is tested and runs without errors
-- [ ] Materials align with course learning objectives
-- [ ] Difficulty level is appropriate for target students
-- [ ] Solutions are complete and well-explained
-
-## Additional Guidelines
-
-### Important Reminders
-
-- Do what has been asked; nothing more, nothing less
-- Prefer editing existing files to creating new ones
-- Only create documentation files if explicitly requested
-- Follow the existing code style and conventions in the repository
+- Container IDs change when devContainers are rebuilt
+- Each project (main + submodules) may have different development setups
+- Always verify which container you're targeting before executing commands

@@ -5,9 +5,6 @@ ENV TZ="$TZ"
 
 ARG CLAUDE_CODE_VERSION=latest
 
-RUN groupadd docker
-RUN usermod -aG docker vscode
-
 # Set the default shell for the 'vscode' user
 ENV SHELL /bin/zsh
 
@@ -16,11 +13,11 @@ ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global
 ENV PATH=$PATH:/usr/local/share/npm-global/bin
 
 # Set the default editor and visual
-ENV EDITOR vi
-ENV VISUAL vi
+ENV EDITOR nano
+ENV VISUAL naoo
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
       dnsutils \ 
       procps \
       sudo \
@@ -62,16 +59,13 @@ ENV DEVCONTAINER=true
 RUN mkdir -p /workspace /home/vscode/.claude && \
   chown -R vscode:vscode /workspace /home/vscode/.claude
 
-# Start the Docker daemon when the container launches
-CMD ["dockerd-entrypoint.sh"]
-
 # Create Python virtual environment for programming languages course
-RUN python3 -m venv /home/vscode/pl-env && \
-  chown -R vscode:vscode /home/vscode/pl-env
+RUN python3 -m venv /home/vscode/venv && \
+  chown -R vscode:vscode /home/vscode/venv
 
 # Add virtual environment activation to shell profiles
-RUN echo "source /home/vscode/pl-env/bin/activate" >> /home/vscode/.bashrc && \
-  echo "source /home/vscode/pl-env/bin/activate" >> /home/vscode/.zshrc
+RUN echo "source /home/vscode/venv/bin/activate" >> /home/vscode/.bashrc && \
+  echo "source /home/vscode/venv/bin/activate" >> /home/vscode/.zshrc
 
 # Default powerline10k theme
 ARG ZSH_IN_DOCKER_VERSION=1.2.0

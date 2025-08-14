@@ -1,6 +1,6 @@
 # Claude (Code) Course Assistant Template
 
-A GitHub template repository for instructors to create AI-powered course development assistants using Claude.
+A GitHub template repository for instructors to utilize Claude Code for course management.
 
 ## Overview
 
@@ -13,6 +13,7 @@ This template provides a structured framework for instructors to leverage Claude
 - **Pedagogical Best Practices**: Built-in emphasis on scaffolding, clarity, and appropriate academic rigor
 - **Flexible Framework**: Adaptable to any course, programming language, or academic level
 - **Quality Assurance**: Integrated checklists and standards for course material development
+- **Multi-Project Container Orchestration**: send docker commands to the host socker within this container
 
 ## Getting Started
 
@@ -50,6 +51,7 @@ With Claude configured, you can now:
 - **Generate Practice Problems**: "Generate 8 practice problems with solutions for [TOPIC]"
 - **Build Assessments**: "Create exam questions testing understanding of [LEARNING OBJECTIVE]"
 - **Review and Refine**: "Review this material and suggest improvements for clarity and consistency"
+- **Multi-Project Management with Docker-out-of-Docker**: "Test the first programming assignment container to confirm the tests pass"
 
 ## Repository Structure
 
@@ -76,22 +78,4 @@ your-course-repo/
 
 1. **Keep CLAUDE.md Updated**: As your course evolves, update the instructions to reflect changes
 2. **Version Control**: Commit changes regularly to track course development progress
-3. **Consistent Formatting**: Use the Q#/A format for practice problems as specified in CLAUDE.md
-4. **Iterative Development**: Start with core materials and progressively add detail
-5. **Student Testing**: Have Claude generate materials at different difficulty levels
-
-## Example Prompts
-
-Here are some effective prompts to use with your configured assistant:
-
-- "Create a lesson on binary search trees with 6 practice problems of increasing difficulty"
-- "Generate starter code in Python for an assignment on graph traversal algorithms"
-- "Review this exam question and suggest improvements for clarity"
-- "Create a grading rubric for the dynamic programming assignment"
-- "Generate test cases for the sorting algorithm implementation"
-
-## Troubleshooting
-
-- **Claude doesn't follow course guidelines**: Ensure CLAUDE.md is properly formatted and saved
-- **Inconsistent responses**: Reference CLAUDE.md explicitly in your prompts
-- **DevContainer issues**: Check Docker is running and VS Code extensions are up to date
+3. **Iterative Development**: Start with core materials and progressively add detail
